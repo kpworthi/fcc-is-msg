@@ -1,9 +1,12 @@
 'use strict';
 
+require('dotenv').config();
 var express     = require('express');
 var bodyParser  = require('body-parser');
 var expect      = require('chai').expect;
 var cors        = require('cors');
+var helmet      = require('helmet');
+var helmetDef   = helmet.contentSecurityPolicy.getDefaultDirectives();
 
 var apiRoutes         = require('./routes/api.js');
 var fccTestingRoutes  = require('./routes/fcctesting.js');
@@ -12,6 +15,9 @@ var runner            = require('./test-runner');
 var app = express();
 
 app.use('/public', express.static(process.cwd() + '/public'));
+
+//set up helmet with defaults
+app.use(helmet({}));
 
 app.use(cors({origin: '*'})); //For FCC testing purposes only
 
@@ -28,6 +34,13 @@ app.route('/b/:board/:threadid')
     res.sendFile(process.cwd() + '/views/thread.html');
   });
 
+//handling script requests
+app.route('/scripts/:file')
+  .get(function(req, res){
+    res.type('text/javascript');
+    res.sendFile(process.cwd() + '/scripts/' + req.params.file);
+  })
+
 //Index page (static HTML)
 app.route('/')
   .get(function (req, res) {
@@ -39,9 +52,6 @@ fccTestingRoutes(app);
 
 //Routing for API 
 apiRoutes(app);
-
-//Sample Front-end
-
     
 //404 Not Found Middleware
 app.use(function(req, res, next) {

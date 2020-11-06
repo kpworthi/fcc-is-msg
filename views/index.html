@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome to HyperDev!</title>
-    <meta name="description" content="A cool thing made with HyperDev">
-    <link id="favicon" rel="icon" href="https://hyperdev.com/favicon-app.ico" type="image/x-icon">
+    <title>Anony-board landing!</title>
+    <meta name="description" content="A message board made on repl.it">
+    <link id="favicon" rel="icon" href="/public/icov1_1.png" type="image/x-icon">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./public/style.css">
+    <link rel="stylesheet" href="/public/style.css">
   </head>
   <body>
     <header>
       <h1>
-        ISQA_3 - Anon Message Board
+        IS_2 - The Anony-Board
       </h1>
     </header>
     <div id='userstories' style='margin-left: 5%; margin-top: 5%'>
@@ -33,9 +33,15 @@
         <li>I can report a reply and change it's reported value to true by sending a <b>PUT</b> request to <i>/api/replies/{board}</i> and pass along the <code>thread_id</code> &amp; <code>reply_id</code>. (Text response will be 'success')</li>
         <li>Complete functional tests that wholely test routes and pass.</li>
       </ol>
-      <img src='https://cdn.gomix.com/8f5547a1-a0d6-48f6-aa38-51753a0105f4%2FScreen%20Shot%202017-01-02%20at%201.04.10%20AM.png'>
+      <img src='./public/api-ref.png'>
       <br><br>
-      <h2><a href='/b/general/'>Go to testing <i>'/b/general/'</i> board</a></h2>
+      <h2>Boards:</h2>
+      <ul id="board-list">
+        <li class="board-link"><a href='/b/general/'><i>'/b/general/'</i></a></li>
+        <li class="board-link"><a href='/b/tech/'><i>'/b/tech/'</i></a></li>
+        <li class="board-link"><a href='/b/games/'><i>'/b/games/'</i></a></li>
+        <li class="board-link"><a href='/b/movies/'><i>'/b/movies/'</i></a></li>
+      </ul>
     </div>
     <hr style='margin: 50px'>
     <div id='testui' style='margin-left: 5%'>
@@ -93,72 +99,7 @@
     </div>
     <hr style='margin: 50px; margin-top: 200px'>
     <!-- Your web-app is https, so your scripts need to be too -->
-    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
-            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
-            crossorigin="anonymous"></script>
-    <script>
-      $(function() {
-        $('#newThread').submit(function(){
-          var board = $('#board1').val();
-          $(this).attr('action', "/api/threads/" + board);
-        });
-        $('#newReply').submit(function(){
-          var board = $('#board4').val();
-          $(this).attr('action', "/api/replies/" + board);
-        });
-        $('#reportThread').submit(function(e){
-          var url = "/api/threads/"+$('#board2').val();
-          $.ajax({
-            type: "PUT",
-            url: url,
-            data: $(this).serialize(),
-            success: function(data)
-            {
-              alert(data);
-            }
-          });
-          e.preventDefault();
-        });
-        $('#deleteThread').submit(function(e){
-          var url = "/api/threads/"+$('#board3').val();
-          $.ajax({
-            type: "DELETE",
-            url: url,
-            data: $(this).serialize(),
-            success: function(data)
-            {
-              alert(data);
-            }
-          });
-          e.preventDefault();
-        });
-        $('#reportReply').submit(function(e){
-          var url = "/api/replies/"+$('#board5').val();
-          $.ajax({
-            type: "PUT",
-            url: url,
-            data: $(this).serialize(),
-            success: function(data)
-            {
-              alert(data);
-            }
-          });
-          e.preventDefault();
-        });
-        $('#deleteReply').submit(function(e){
-          var url = "/api/replies/"+$('#board6').val();
-          $.ajax({
-            type: "DELETE",
-            url: url,
-            data: $(this).serialize(),
-            success: function(data)
-            {
-              alert(data);
-            }
-          });
-          e.preventDefault();
-        });
-      });
-   </script>
+    <script type="application/javascript" src="/scripts/jquery-3.5.1.min.js"></script>
+    <script type="application/javascript" src="/scripts/index.js"></script>
   </body>
 </html>

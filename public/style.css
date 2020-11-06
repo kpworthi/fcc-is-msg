@@ -5,6 +5,35 @@
 
 body {
   padding: 10px;
+  background-color: beige;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+header {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  background-color: beige;
+  top: 0;
+  width: 100vw;
+}
+
+header h1{
+  color: rgb(112, 29, 29);
+  font-family: Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+header #nav{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-right: 5%;
+  color: default;
+}
+
+header #nav a {
+  font-size: 20px;
+  padding: 0 5px 0 5px;
 }
 
 .replies {
@@ -33,4 +62,13 @@ body {
 
 #submitNewThread {
   margin: 50px;
+}
+
+#board-list{
+  line-height: 20px;
+}
+
+.placeholder{
+  margin-top: 50px;
+  text-align: center;
 }
